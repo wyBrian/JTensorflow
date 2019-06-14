@@ -22,6 +22,7 @@ public class DemoApplication {
     public static void main(String[] args){
         byte[] fileContent = new byte[0];
         try {
+
             fileContent = FileUtils.readFileToByteArray(new File("./src/main/resources/images/car.jpg"));
             String host = "127.0.0.1";
             int port = 8500;
@@ -46,6 +47,9 @@ public class DemoApplication {
 
             System.out.println("classes are: " + predictResponse.getOutputsOrThrow("classes").getInt64Val(0));
             System.out.println("probabilities are: " + predictResponse.getOutputsOrThrow("probabilities").getFloatVal(0));
+
+            channel.shutdown();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
